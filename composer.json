@@ -1,0 +1,13 @@
+{
+    "name": "devcode/api-client",
+    "license": "GPL-3.0",    
+    "type": "library",
+    "require": {
+        "guzzlehttp/guzzle": "^6.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "OSM\\API\\": "src/"
+        }
+    }
+}
