@@ -2,7 +2,8 @@
 
 require_once __DIR__.'/vendor/autoload.php';
 
-$client = new OSM\API\Client('http://localhost/openstamanager/api/', 'hm6Qv1HhGkFvxy0cLphAsbk3ZXQdF3mv');
+$client = new OSM\API\Client('http://localhost/openstamanager/api/');
+$client->login('admin', 'admin');
 
 $retrieve = $client->retrieve('an_anagrafiche');
 print_r($retrieve);
@@ -28,3 +29,5 @@ $delete = $client->delete('delete_anagrafica', [
     'id' => 33,
 ]);
 print_r($delete);
+
+$client->logout();

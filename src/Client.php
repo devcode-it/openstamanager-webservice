@@ -37,10 +37,10 @@ class Client
      * Throw an exception when CURL is not installed/activated.
      *
      * @param string $url   Root URL for the shop
-     * @param string $key   Authentification key
+     * @param string $token Authentification key
      * @param mixed  $debug Debug mode Activated (true) or deactivated (false)
      */
-    public function __construct($url, $token, $debug = true)
+    public function __construct($url, $token = null, $debug = true)
     {
         if (!filter_var($url, FILTER_VALIDATE_URL, ['flags' => FILTER_FLAG_HOST_REQUIRED])) {
             throw new UnexpectedValueException();
@@ -53,12 +53,29 @@ class Client
         }
 
         $this->url = $url;
-        $this->token = $token;
+        $this->token = $token;        
         $this->debug = $debug;
 
         $this->client = new \GuzzleHttp\Client([
             'base_uri' => $url,
         ]);
+    }
+
+    public function login($username, $password)
+    {
+        $response = $this->create('login', [
+            'username' => $username,
+            'password' => $password,
+        ]);
+
+        if (!empty($response['token'])) {
+            $this->token = $response['token'];
+        }
+    }
+
+    public function logout()
+    {
+        $this->create('logout');
     }
 
     public function retrieve($resource, $data = [])
