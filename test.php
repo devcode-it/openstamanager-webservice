@@ -8,7 +8,7 @@ $client->login('admin', 'admin');
 $retrieve = $client->retrieve('an_anagrafiche');
 print_r($retrieve);
 
-$create = $client->create('add_anagrafica', [
+$create = $client->create('anagrafica', [
     'data' => [
         'ragione_sociale' => 'TETETETE',
         'tipi' => [1, 2],
@@ -16,7 +16,7 @@ $create = $client->create('add_anagrafica', [
 ]);
 print_r($create);
 
-$update = $client->update('update_anagrafica', [
+$update = $client->update('anagrafica', [
     'id' => 34,
     'data' => [
         'ragione_sociale' => 'LLLALALA',
