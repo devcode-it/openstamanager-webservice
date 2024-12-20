@@ -42,7 +42,7 @@ class Client
      */
     public function __construct($url, $token = null, $debug = true)
     {
-        if (!filter_var($url, FILTER_VALIDATE_URL, ['flags' => FILTER_FLAG_HOST_REQUIRED])) {
+        if (!filter_var($url, FILTER_VALIDATE_URL)) {
             throw new UnexpectedValueException();
         }
 
